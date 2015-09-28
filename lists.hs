@@ -14,4 +14,4 @@ mFirst (x:_)  = x
 
 -- Function: mLength
 mLength [] = 0
-mLength (_:xs) = 1 + mLength xs 
+mLength (_:xs) = 1 + mLength xs
