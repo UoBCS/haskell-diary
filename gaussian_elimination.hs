@@ -1,3 +1,4 @@
--- Gaussian elimination
+-- Gaussian elimination (no pivoting implementation)
 
-gaussianElim [[a]] [b] = b / a 
+gaussianElim :: (Num a, Ord a) => [[a]] -> [a] -> [[a]]
+gaussianElim [] = []
