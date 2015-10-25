@@ -36,3 +36,15 @@ flatten l = flatten' l []
         flatten' [] acc = acc
         flatten' (x : xs) acc = flatten' xs (acc ++ x)
 
+dupli :: [a] -> [a]
+dupli [] = []
+dupli (x:xs) = (x:(x:(dupli xs)))
+
+repli :: [a] -> Int -> [a]
+repli [] _ = []
+repli (x:xs) n = (repli' x n) ++ (repli xs n)
+      where repli' _ 0 =  []
+            repli' x n = x : (repli' x (n - 1))
+
+
+
