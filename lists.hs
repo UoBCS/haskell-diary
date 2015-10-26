@@ -3,48 +3,52 @@
 -- Contains list functions (concepts: recursion and comprehesions)
 
 
--- Function: mLast
+-- Gets the last element of a list
+mLast :: [a] -> a
 mLast [] = error "Empty list"
 mLast [x] = x
 mLast (_:xs) = mLast xs
 
--- Function: mFirst
+-- Gets the first element of a list
+mFirst :: [a] -> a
 mFirst [] = error "Empty list"
 mFirst (x:_) = x
 
--- Function: mLength
+-- Gets the length of a list
+mLength :: [a] -> Int
 mLength [] = 0
 mLength (_:xs) = 1 + mLength xs
 
--- Function: elementAt
+-- Gets the elements at a given position in a list
+elementAt :: [a] -> Int -> a
 elementAt [] _ = error "Index out of bounds"
 elementAt (x : _) 0 = x
 elementAt (x : xs) n = elementAt xs (n - 1)
 
--- Function: mReverse
+-- Reverses a given list
+mReverse :: [a] -> [a]
 mReverse [] = []
 mReverse (x : xs) = (mReverse xs) ++ [x]
 
--- Function: isPalindrome
+-- Palindrome of a list
 isPalindrome :: Eq a => [a] -> Bool
 isPalindrome l = l == reverse l
 
--- Function: flatten
+-- Flattens a list
 flatten :: [[a]] -> [a]
 flatten l = flatten' l []
         where
         flatten' [] acc = acc
         flatten' (x : xs) acc = flatten' xs (acc ++ x)
 
+-- Duplicates the elements of a list
 dupli :: [a] -> [a]
 dupli [] = []
 dupli (x:xs) = (x:(x:(dupli xs)))
 
+-- Replicate the elements of a list
 repli :: [a] -> Int -> [a]
 repli [] _ = []
 repli (x:xs) n = (repli' x n) ++ (repli xs n)
       where repli' _ 0 =  []
             repli' x n = x : (repli' x (n - 1))
-
-
-
