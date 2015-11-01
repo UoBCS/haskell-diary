@@ -2,6 +2,10 @@
 data BT a = Empty
           | Fork a (BT a) (BT a) deriving (Show, Read, Eq, Ord)
 
+instance Functor BT where
+         fmap f Empty = Empty
+         fmap f (Fork x l r) = Fork (f x) (fmap f l) (fmap f r)
+
 leaf :: a -> BT a
 leaf x = Fork x Empty Empty
 
