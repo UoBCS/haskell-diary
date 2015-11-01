@@ -52,3 +52,33 @@ repli [] _ = []
 repli (x:xs) n = (repli' x n) ++ (repli xs n)
       where repli' _ 0 =  []
             repli' x n = x : (repli' x (n - 1))
+
+-- Drop from list every n elements
+dropEvery :: [a] -> Int -> [a]
+dropEvery l n  = dropEvery' l 1
+          where dropEvery' [] _ = []
+                dropEvery' (x:xs) i | i `mod` n == 0 = dropEvery' xs (i + 1)
+                                    | otherwise      = x : (dropEvery' xs (i + 1))
+
+splitFn n a b = let (l, r, i) = a in
+              if    i <= n
+              then (l ++ [b], r, i + 1)
+              else (l, r ++ [b], i + 1)
+
+split :: [a] -> Int -> ([a], [a])
+split ls n = let (l, r, _) = foldl (splitFn n) ([], [], 1) ls in (l, r)
+
+sliceFn l u a b = let (ls, i) = a in
+          if i >= l && i <= u
+          then (ls ++ [b], i + 1)
+          else (ls, i + 1)
+
+slice :: [a] -> Int -> Int -> [a]
+slice ls l u = let (result, _) = foldl (sliceFn l u) ([], 1) ls in result
+
+
+remove_at :: Int -> [a] -> [a]
+remove_at 0 _  = error "Index out of bounds"
+remove_at _ [] = error "Index out of bounds"
+remove_at n (x:xs) | n == 1    = xs
+                   | otherwise = x : (remove_at (n - 1) xs)
