@@ -6,6 +6,12 @@ instance Functor BT where
          fmap f Empty = Empty
          fmap f (Fork x l r) = Fork (f x) (fmap f l) (fmap f r)
 
+instance Monad BT where
+         Empty      >>= k = Empty
+         Fork n l r >>= k = Fork n (k l) (k r)
+         return x         = Fork x Empty Empty
+         
+
 leaf :: a -> BT a
 leaf x = Fork x Empty Empty
 
