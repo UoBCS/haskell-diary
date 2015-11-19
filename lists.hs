@@ -2,6 +2,8 @@
 -- lists.sh
 -- Contains list functions (concepts: recursion and comprehesions)
 
+import System.Random
+
 
 -- Gets the last element of a list
 mLast :: [a] -> a
@@ -82,3 +84,18 @@ remove_at 0 _  = error "Index out of bounds"
 remove_at _ [] = error "Index out of bounds"
 remove_at n (x:xs) | n == 1    = xs
                    | otherwise = x : (remove_at (n - 1) xs)
+
+
+rnd_select :: [b] -> Int -> IO [b]
+rnd_select ls n | n < 0     = error "Error using rnd_select"
+                | otherwise = do
+                              gen <- getStdGen
+                              let random_nums = take n $ randomRs (0, (length ls) - 1) gen
+                              return (zipWith (\_ b -> ls!!b) ls random_nums)
+
+diff_select :: Int -> Int -> IO [Int]
+diff_select n m | m < 1     = error "Error using diff_select"
+                | otherwise = do
+                              gen <- getStdGen
+                              let nums = [1..m]; random_nums = take n $ randomRs (0, m - 1) gen
+                              return (map (\a -> nums!!a) random_nums)
