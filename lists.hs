@@ -2,6 +2,8 @@
 -- lists.sh
 -- Contains list functions (concepts: recursion and comprehesions)
 
+import Data.List
+import Data.Ord
 import System.Random
 
 
@@ -99,3 +101,10 @@ diff_select n m | m < 1     = error "Error using diff_select"
                               gen <- getStdGen
                               let nums = [1..m]; random_nums = take n $ randomRs (0, m - 1) gen
                               return (map (\a -> nums!!a) random_nums)
+
+
+lsort :: Ord a => [[a]] -> [[a]]
+lsort = sortBy (\xs ys -> compare (length xs) (length ys))
+
+lsort' :: Ord a => [[a]] -> [[a]]
+lsort' = sortBy $ comparing length
