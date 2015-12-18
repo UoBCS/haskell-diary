@@ -7,3 +7,7 @@ gcd' a b | b == 0    = a
 
 coprime :: Integral a => a -> a -> Bool
 coprime a b = gcd' a b == 1
+
+totient :: Integral a => a -> Int
+totient 1 = 1
+totient m = length $ [r | r <- [1..m], coprime r m]
