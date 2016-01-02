@@ -1,3 +1,7 @@
+
+-- bst.hs
+-- Binary Search Trees implementation
+
 -- Binary trees
 data BT a = Empty
           | Fork a (BT a) (BT a) deriving (Show, Read, Eq, Ord)

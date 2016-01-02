@@ -1,4 +1,7 @@
+
+-- custom_list.hs
 -- Custom lists
+
 data List a = Nil
             | Cons a (List a) deriving (Show, Read, Eq, Ord)
 

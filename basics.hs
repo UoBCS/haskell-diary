@@ -1,4 +1,6 @@
 
+-- basics.hs
+-- Contains basic functions
 
 -- Doubles a given number
 doubleMe x = x + x
@@ -24,7 +26,6 @@ cylinder r h =
     let sideArea = 2 * pi * r * h
         topArea = pi * r ^ 2
     in sideArea + 2 * topArea
-
 
 -- Function: capital
 capital :: String -> String
